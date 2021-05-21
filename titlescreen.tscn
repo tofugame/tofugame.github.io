@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://tofu the game.png" type="Texture" id=1]
+[ext_resource path="res://start button.png" type="Texture" id=2]
+[ext_resource path="res://start button2.png" type="Texture" id=3]
+[ext_resource path="res://titlescreen.gd" type="Script" id=4]
+[ext_resource path="res://dog2.png" type="Texture" id=5]
+[ext_resource path="res://dog.png" type="Texture" id=6]
+[ext_resource path="res://discorb.png" type="Texture" id=7]
+[ext_resource path="res://discord.gd" type="Script" id=8]
+[ext_resource path="res://discorb2.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "logo"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, 0.0 ]
+}
+
+[sub_resource type="OpenSimplexNoise" id=2]
+seed = 521
+octaves = 2
+period = 256.0
+persistence = 0.68
+lacunarity = 3.51
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 30.9855
+margin_top = 53.1757
+margin_right = 158.986
+margin_bottom = 117.176
+rect_scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+autoplay = "logo"
+anims/logo = SubResource( 1 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 29.6133
+margin_top = 400.134
+margin_right = 339.613
+margin_bottom = 555.134
+rect_rotation = 6.39555
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+margin_left = 535.564
+margin_top = 47.5087
+margin_right = 1387.56
+margin_bottom = 899.509
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+margin_left = 10.0
+margin_top = 614.0
+margin_right = 114.0
+margin_bottom = 718.0
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 9 )
+expand = true
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+margin_right = 8.0
+margin_bottom = 8.0
+texture_hover = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="_on_TextureButton3_pressed"]
+[connection signal="pressed" from="TextureButton4" to="." method="_on_TextureButton4_pressed"]
